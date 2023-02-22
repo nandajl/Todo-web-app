@@ -4,12 +4,13 @@
     <div class="mx-auto my-8 p-4 border">
       <h5 class="text-lg">Simple To Do App</h5>
       <input v-model="todo" @keyup.enter="addTodo" type="text" class="border-4 rounded-lg mt-3 px-2 py-1">
-      <button @click="addTodo" class="bg-zinc-800 rounded-full py-1 px-3 text-white ml-2">+</button>
-      <List :todos="todos" @deleteTodo="deleteTodo"/>
+      <button @click="addTodo" class="bg-zinc-800 rounded-full py-1 px-2 text-white ml-2">+</button>
+      <List :todos="todos" @deleteTodo="deleteTodo" @doneTodo="doneTodo"/>
+      <hr class="my-2"/>
+      <small>Total : {{ totalTodo }}</small>
     </div>
   </div>
 </template>
-
 
   <script>
     import List from './components/List.vue'
@@ -21,10 +22,23 @@
           todos: [] 
         }
       },
+      mounted() {
+        this.todos = JSON.parse(localStorage.getItem('todos'));
+      },  
+      computed: {
+        totalTodo(){
+          return this.todos.length;
+        }
+      },
       methods: {
         addTodo(){
-          this.todos.unshift(this.todo);
+          this.todos.unshift({
+            activity: this.todo,
+            isDone: false
+
+          });
           this.todo = "";
+          this.saveToLocalStorage(); 
         },
         deleteTodo(todoIndex){
           this.todos = this.todos.filter((item, index)=>{
@@ -32,6 +46,20 @@
               return item;
             }
           })
+          this.saveToLocalStorage(); 
+        },
+        doneTodo(todoIndex){
+          this.todos = this.todos.filter((item, index) => {
+            if (index == todoIndex) {
+              item.isDone = !item.isDone; 
+            }
+
+            return item;
+          })
+          this.saveToLocalStorage(); 
+        },
+        saveToLocalStorage(){
+          localStorage.setItem('todos', JSON.stringify(this.todos))
         }
       }
     }
