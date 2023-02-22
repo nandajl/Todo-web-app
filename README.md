@@ -1,7 +1,25 @@
-# Vue 3 + Vite
+<h1 align="center">Simple To-Do App</h1>
+<h3 align="center">A nice way to create tasks and save notes</h3>
+<div align="center">
+    ![todo app view](todo.png)
+</div>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<p>A simple to do web app built with vuejs and tailwind css, just try it</p>
 
-## Recommended IDE Setup
+## Install
+Clone the repo:
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```bash
+git clone https://github.com/nandajl/Todo-web-app.git
+```
+
+Go to the folder and install the requirements:
+
+```bash
+npm install
+```
+
+Run the app
+```bash
+npm run dev
+```
